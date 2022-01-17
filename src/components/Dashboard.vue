@@ -1,0 +1,18 @@
+<template>
+  <div id="wrapper">
+    <sidebar-component></sidebar-component>
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <navbar-component></navbar-component>
+        <div class="container-fluid">
+          <h1 class="h3 mb-4 text-gray-800">DASHBOARD</h1>
+          <p>
+            WIFINYA NGELAG<br>
+            ketik 1 biar koneksinya makin semangat
+          </p>
+        </div>
+      </div>
+      <footer-component></footer-component>
+    </div>
+  </div>
+</template>
