@@ -6,7 +6,7 @@
         <navbar-component></navbar-component>
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">MEMBER</h1>
+          <h1 class="h3 mb-2 text-gray-800">USER</h1>
           <!-- <p class="mb-4">
             DataTables is a third party plugin that is used to generate the demo
             table below. For more information about DataTables, please visit the
@@ -18,7 +18,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Member</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -32,9 +32,9 @@
                     <tr>
                       <th>ID</th>
                       <th>NAMA</th>
-                      <th>ALAMAT</th>
-                      <th>JENIS KELAMIN</th>
-                      <th>TELP</th>
+                      <th>USERNAME</th>
+                      <th>PASSWORD</th>
+                      <th>ROLE</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -50,11 +50,11 @@
                     <tr>
                       <td>1</td>
                       <td>Lucky Purnama</td>
-                      <td>Jl. Danau Singkarak</td>
-                      <td>Laki-laki</td>
-                      <td>081234567890</td>
+                      <td>luckyd</td>
+                      <td>luckyd</td>
+                      <td>admin</td>
                       <td>
-                        <a href="#" class="btn btn-warning btn-icon-split">
+                        <a href="/edit_user" class="btn btn-warning btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-info-circle"></i>
                           </span>
@@ -72,10 +72,11 @@
                     <tr>
                       <td>2</td>
                       <td>Lucky Purnama</td>
-                      <td>Jl. Danau Singkarak</td>
-                      <td>Perempuan</td>
-                      <td>081234567890</td>
-                      <td><a href="#" class="btn btn-warning btn-icon-split">
+                      <td>luckyd</td>
+                      <td>luckyd</td>
+                      <td>admin</td>
+                      <td>
+                          <a href="/edit_user" class="btn btn-warning btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-info-circle"></i>
                           </span>
@@ -92,10 +93,11 @@
                     <tr>
                       <td>3</td>
                       <td>Lucky Purnama</td>
-                      <td>Jl. Danau Singkarak</td>
-                      <td>Laki-laki</td>
-                      <td>081234567890</td>
-                      <td><a href="#" class="btn btn-warning btn-icon-split">
+                      <td>luckyd</td>
+                      <td>luckyd</td>
+                      <td>admin</td>
+                      <td>
+                          <a href="/edit_user" class="btn btn-warning btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-info-circle"></i>
                           </span>
@@ -112,10 +114,11 @@
                     <tr>
                       <td>4</td>
                       <td>Lucky Purnama</td>
-                      <td>Jl. Danau Singkarak</td>
-                      <td>Perempuan</td>
-                      <td>081234567890</td>
-                      <td><a href="#" class="btn btn-warning btn-icon-split">
+                      <td>luckyd</td>
+                      <td>luckyd</td>
+                      <td>admin</td>
+                      <td>
+                          <a href="/edit_user" class="btn btn-warning btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-info-circle"></i>
                           </span>
@@ -132,7 +135,7 @@
                   </tbody>
                 </table>
               </div>
-              <a href="#" class="btn btn-success btn-icon-split">
+              <a href="/tambah_user" class="btn btn-success btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-check"></i>
                           </span>
@@ -152,7 +155,7 @@
 export default {
   data() {
     return {
-      member: {},
+      user: {},
     };
   },
   created() {

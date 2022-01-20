@@ -101,7 +101,10 @@
           <span class="mr-2 d-none d-lg-inline text-gray-600 small"
             >Lucky Purnama</span
           >
-          <img class="img-profile rounded-circle" src="@/assets/img/profil.jpg" />
+          <img
+            class="img-profile rounded-circle"
+            src="@/assets/img/profil.jpg"
+          />
         </a>
         <!-- Dropdown - User Information -->
         <div
@@ -113,15 +116,37 @@
             Profile
           </a>
           <div class="dropdown-divider"></div>
-          <router-link to="/login">
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          <!-- <router-link to="/login"> -->
+            <a class="dropdown-item" href="#"
+              data-toggle="modal"
+              data-target="#logoutModal"
+            >
+              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" @click="logout"></i>
               Logout
             </a>
-          </router-link>
+          <!-- </router-link> -->
         </div>
       </li>
     </ul>
   </nav>
   <!-- End of Topbar -->
 </template>
+
+<script>
+export default {
+  methods: {
+    logout() {
+      this.axios
+        .post('http://localhost/Laundry-UKK-Final/public/api/logout', {
+          headers: { Authorization: "Bearer " + this.$store.state.token },
+        })
+
+        .then(() => {
+          this.$store.commit("clearToken");
+          this.$store.commit("clearUser");
+          this.$router.push("/login");
+        });
+    },
+  },
+};
+</script>
