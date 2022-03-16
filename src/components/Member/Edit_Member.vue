@@ -186,7 +186,15 @@ export default {
     };
   },
   created() {
-    this.axios
+
+        var data = JSON.parse(this.$store.state.datauser)
+        var role = data.role
+        if(role == 'owner')
+        {
+            this.$swal("Anda tidak dapat mengakses halaman ini")
+            this.$router.push('/') 
+        }
+    this.axios    
       .get(
         `http://localhost/api-laundry/public/api/member/${this.$route.params.id}`,
         {
@@ -207,8 +215,11 @@ export default {
             headers: { Authorization: "Bearer " + this.$store.state.token },
           }
         )
-        .then(() => {
+        .then((res) => {
+          if(!(res.data.success)){
+            this.$swal("Sukses", res.data.message, "success")
           this.$router.push("/member");
+          }
         })
         .catch((err) => console.log(err));
     },

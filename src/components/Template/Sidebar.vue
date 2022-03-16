@@ -36,7 +36,7 @@
         <span>Member</span>
       </router-link>
     </li>
-    <li v-if="isAdmin || isKasir" class="nav-item">
+    <li v-if="isAdmin" class="nav-item">
       <router-link to="/user" class="nav-link">
         <i class="fas fa-user"></i>
         <span>User</span>
@@ -60,7 +60,7 @@
         <span>Transaksi</span>
       </router-link>
     </li>
-    <li v-if="isOwner" class="nav-item">
+    <li class="nav-item">
       <router-link to="/report" class="nav-link">
         <i class="far fa-file-alt"></i>
         <span>Report</span>

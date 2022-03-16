@@ -108,9 +108,17 @@ export default {
     };
   },
   created() {
+        var data = JSON.parse(this.$store.state.datauser)
+        var role = data.role
+        if(role == 'owner')
+        {
+            this.$swal("Anda tidak dapat mengakses halaman ini")
+            this.$router.push('/') 
+        }
+
     this.axios
       .get("http://localhost/api-laundry/public/api/member", {
-        headers: { 'Authorization' : "Bearer " + this.$store.state.token },
+        headers: { Authorization: "Bearer " + this.$store.state.token },
       })
       .then((res) => {
         this.member = res.data;
@@ -119,16 +127,19 @@ export default {
   methods: {
     hapus(id) {
       this.axios
-        .delete(
-          `http://localhost/api-laundry/public/api/member/${id}`,
-          {
-            headers: { 'Authorization': "Bearer " + this.$store.state.token },
+        .delete(`http://localhost/api-laundry/public/api/member/${id}`, {
+          headers: { Authorization: "Bearer " + this.$store.state.token },
+        })
+        .then((res) => {
+          if(res.data.success){
+            let i = this.member.map((item) => item.id).indexOf(id);
+            this.member.splice(i, 1);
+            // this.$swal("Sukses", res.data.message, "success")
+            this.$swal(res.data.message)
+          }else{
+            this.$swal('Data member gagal dihapus')
           }
-        )
-        .then(() => {
-          let i = this.member.map((item) => item.id).indexOf(id);
-          this.member.splice(i, 1);
-        });
+        }).catch()
     },
   },
 };

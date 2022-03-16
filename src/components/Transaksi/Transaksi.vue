@@ -13,40 +13,6 @@
               <h6 class="m-0 font-weight-bold text-primary">Data Transaksi</h6>
             </div>
             <div class="card-body">
-              <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <div class="dataTables_length" id="dataTable_length">
-                    <label
-                      >Show
-                      <select
-                        name="dataTable_length"
-                        aria-controls="dataTable"
-                        class="
-                          custom-select custom-select-sm
-                          form-control form-control-sm
-                        "
-                      >
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                      </select>
-                      entries</label
-                    >
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                  <div id="dataTable_filter" class="dataTables_filter">
-                    <label
-                      >Search:<input
-                        type="search"
-                        class="form-control form-control-sm"
-                        placeholder=""
-                        aria-controls="dataTable"
-                    /></label>
-                  </div>
-                </div>
-              </div>
               <div class="table-responsive">
                 <table
                   class="table table-bordered"
@@ -156,6 +122,13 @@ export default {
     };
   },
   created() {
+        var data = JSON.parse(this.$store.state.datauser)
+        var role = data.role
+        if(role == 'owner')
+        {
+            this.$swal("Anda tidak dapat mengakses halaman ini")
+            this.$router.push('/') 
+        }
     this.axios
       .get("http://localhost/api-laundry/public/api/transaksi", {
         headers: { Authorization: "Bearer " + this.$store.state.token },

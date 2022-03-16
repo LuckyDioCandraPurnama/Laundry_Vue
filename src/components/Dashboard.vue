@@ -9,8 +9,11 @@
             class="d-sm-flex align-items-center justify-content-between mb-4"
           >
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <router-link to="/report" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-              <i class="fas fa-download fa-sm text-white-50"></i>
+            <router-link
+              to="/report"
+              class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+            >
+              <i class="fas fa-download fa-sm text-white-50"></i>&nbsp;
               <span>Generate Report</span>
             </router-link>
             <!-- <a
@@ -142,7 +145,7 @@
             </div>
           </div>
 
-          <div class="card shadow mb-4">
+          <!-- <div class="card shadow mb-4">
             <div
               class="
                 card-header
@@ -152,29 +155,176 @@
                 justify-content-between
               "
             >
-              <h6 class="m-0 font-weight-bold text-primary">About</h6>
-            </div>
-            <!-- Card Body -->
-            <div class="card-body">
-              <div class="row">
-                <div class="col-lg-6">
-                  <h2 class="h3 text-gray-900">APP LAUNDRY</h2>
-                  <p class="mb-0">
-                    Aplikasi ini buat laundry <br />Trus bisa cari uang
-                    <br />Aku jadi kaya raya <br />Tamat
-                  </p>
+                <h6 class="m-0 font-weight-bold text-primary">About</h6>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <h2 class="h3 text-gray-900">APP LAUNDRY</h2>
+                    <p class="mb-0">
+                      Aplikasi ini buat laundry <br />Trus bisa cari uang
+                      <br />Aku jadi kaya raya <br />Tamat
+                    </p>
+                  </div>
+                  <div class="col">
+                    <h2 class="h3 text-gray-900">Contact</h2>
+                    <i class="far fa-envelope"> luckyawan7b@gmail.com</i><br />
+                    <i class="fab fa-facebook-square"> Lucky Purnama</i><br />
+                    <i class="fab fa-instagram"> luckydio_27</i><br />
+                    <i class="fab fa-github"> LuckyDioCandraPurnama</i><br />
+                    <p></p>
+                  </div>
                 </div>
-                <div class="col">
-                  <h2 class="h3 text-gray-900">Contact</h2>
-                  <i class="far fa-envelope"> luckyawan7b@gmail.com</i><br />
-                  <!-- <i class="fab fa-whatsapp"> +6285233999857</i><br> -->
-                  <i class="fab fa-facebook-square"> Lucky Purnama</i><br />
-                  <i class="fab fa-instagram"> luckydio_27</i><br />
-                  <i class="fab fa-github"> LuckyDioCandraPurnama</i><br />
-                  <p></p>
+              </div>
+          </div> -->
+
+          <div class="row">
+            <div class="col-lg-9 mb-4">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    LAPORAN BULAN INI
+                  </h6>
+                </div>
+                <div class="card-body">
+                  <table class="table table-bordered" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Member</th>
+                        <th>Tanggal Transaksi</th>
+                        <th>Tanggal Pembayaran</th>
+                        <th>Nominal Pembayaran</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(t, index) in tabel" :key="index">
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ t.nama }}</td>
+                        <td>{{ t.tgl_order | moment("DD/MM/YYYY") }}</td>
+                        <td>{{ t.tgl_bayar | moment("DD/MM/YYYY") }}</td>
+                        <td>Rp {{ t.total }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
+            <div v-if="isAdmin || isKasir" class="col-lg-3 mb-4">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    Quick Access
+                  </h6>
+                </div>
+                <div class="card-body">
+                  <!-- <div class="row"> -->
+                  <div v-if="isAdmin" class="">
+                    <router-link
+                      to="/user/tambah"
+                      class="btn btn-success btn-icon-split btn-sm"
+                    >
+                      <span class="icon text-white-50">
+                        <i class="fas fa-user"></i>
+                      </span>
+                      <span class="text">Tambah User</span>
+                    </router-link>
+                  </div>
+                  <div class="my-2">
+                    <router-link
+                      to="/member/tambah"
+                      class="btn btn-primary btn-icon-split btn-sm"
+                    >
+                      <span class="icon text-white-50">
+                        <i class="fas fa-users"></i>
+                      </span>
+                      <span class="text">Tambah Member</span>
+                    </router-link>
+                  </div>
+                  <div class="my-2">
+                    <router-link
+                      to="/transaksi/tambah"
+                      class="btn btn-info btn-icon-split btn-sm"
+                    >
+                      <span class="icon text-white-50">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                      </span>
+                      <span class="text">Tambah Transaksi</span>
+                    </router-link>
+                  </div>
+
+                  <!-- <div class="col">
+                      <h2 class="h3 text-gray-900">Contact</h2>
+                      <i class="far fa-envelope"> luckyawan7b@gmail.com</i
+                      ><br />
+                      <i class="fab fa-facebook-square"> Lucky Purnama</i><br />
+                      <i class="fab fa-instagram"> luckydio_27</i><br />
+                      <i class="fab fa-github"> LuckyDioCandraPurnama</i><br />
+                      <p></p>
+                    </div> -->
+                  <!-- </div> -->
+                </div>
+              </div>
+            </div>
+            <!-- <div class="card shadow mb-4">
+              <div
+                class="
+                  card-header
+                  py-3
+                  d-flex
+                  flex-row
+                  align-items-center
+                  justify-content-between
+                "
+              >
+                <h6 class="m-0 font-weight-bold text-primary">
+                  Revenue Sources
+                </h6>
+                <div class="dropdown no-arrow">
+                  <a
+                    class="dropdown-toggle"
+                    href="#"
+                    role="button"
+                    id="dropdownMenuLink"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                  </a>
+                  <div
+                    class="
+                      dropdown-menu dropdown-menu-right
+                      shadow
+                      animated--fade-in
+                    "
+                    aria-labelledby="dropdownMenuLink"
+                  >
+                    <div class="dropdown-header">Dropdown Header:</div>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart-pie pt-4 pb-2">
+                  <canvas id="myPieChart"></canvas>
+                </div>
+                <div class="mt-4 text-center small">
+                  <span class="mr-2">
+                    <i class="fas fa-circle text-primary"></i> Direct
+                  </span>
+                  <span class="mr-2">
+                    <i class="fas fa-circle text-success"></i> Social
+                  </span>
+                  <span class="mr-2">
+                    <i class="fas fa-circle text-info"></i> Referral
+                  </span>
+                </div>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -189,9 +339,19 @@ export default {
     return {
       name: "",
       data: {},
+      tabel: {},
+      isAdmin: false,
+      isKasir: false,
+      isOwner: false,
     };
   },
   created() {
+    var user = JSON.parse(this.$store.state.datauser);
+    var role = user.role;
+    if (role == "admin") this.isAdmin = true;
+    else if (role == "kasir") this.isKasir = true;
+    else this.isOwner = true;
+
     var data = JSON.parse(this.$store.state.datauser);
     this.name = data.name;
 
@@ -201,6 +361,14 @@ export default {
       })
       .then((res) => {
         this.data = res.data;
+      });
+
+    this.axios
+      .get("http://localhost/api-laundry/public/api/struk", {
+        headers: { Authorization: "Bearer " + this.$store.state.token },
+      })
+      .then((res) => {
+        this.tabel = res.data;
       });
   },
 };

@@ -8,18 +8,32 @@
           <div class="col-md-6">
             <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">EDIT TRANSAKSI</h3>
+                <h3 class="card-title">TAMBAH OUTLET</h3>
               </div>
-              <form @submit.prevent="edit">
+              <form @submit.prevent="tambah">
                 <div class="card-body">
                   <!-- Form -->
                   <div class="form-group">
-                    <label>Member</label>
-                    <select class="form-control" v-model="transaksi.id_member">
-                        <option v-for="(m, index) in member" :key="index" :value="m.id">{{m.nama}}</option>
-                    </select>
-                    <br />
+                    <label>Nama</label>
+                   <input
+                      type="text"
+                      name="nama"
+                      v-model="outlet.nama"
+                      class="form-control"
+                    />
+                  
                   </div>
+                  <div class="form-group">
+                    <label>Alamat</label>
+                    <input
+                      type="text"
+                      name="alamat"
+                      v-model="outlet.alamat"
+                      class="form-control"
+                    />
+            
+                  </div>
+
                   <div class="card-footer">
                     <button class="btn btn-primary" type="submit">
                       Simpan
@@ -40,44 +54,30 @@
 export default {
   data() {
     return {
-      member: {},
-      transaksi: {},
+      outlet: {},
     };
   },
-  created(){
+  created() {
         var data = JSON.parse(this.$store.state.datauser)
         var role = data.role
-        if(role == 'owner')
+        if(role == 'owner' || role =='kasir')
         {
             this.$swal("Anda tidak dapat mengakses halaman ini")
             this.$router.push('/') 
         }
-      this.axios
-      .get("http://localhost/api-laundry/public/api/member", {
-        headers: { Authorization: "Bearer" + this.$store.state.token },})
-      .then((res) => {
-        this.member = res.data;
-      });
-      this.axios
-      .get(`http://localhost/api-laundry/public/api/transaksi/${this.$route.params.id}`, {
-        headers: { Authorization: "Bearer" + this.$store.state.token },
-      })
-      .then((res) => {
-        this.transaksi = res.data;
-      });
-
   },
   methods: {
-    edit() {
+    tambah() {
       this.axios
-        .put(`http://localhost/api-laundry/public/api/transaksi/edit/${this.$route.params.id}`,
-          this.transaksi,
+        .post(
+          "http://localhost/api-laundry/public/api/outlet",
+          this.outlet,
           {
-            headers: { Authorization: "Bearer " + this.$store.state.token },
+            headers: { Authorization: `Bearer` + this.$store.state.token },
           }
         )
         .then(() => {
-          this.$router.push("/transaksi");
+          this.$router.push("/outlet");
         })
         .catch((err) => console.log(err));
     },

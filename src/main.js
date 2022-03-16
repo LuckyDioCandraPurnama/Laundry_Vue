@@ -5,14 +5,14 @@ import store from './store'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
 import VueHtml2pdf from 'vue-html2pdf'
-// import VueSweetalert2 from 'sweetalert2'
-// import 'sweetalert2/dist/sweetalert2.min.css';
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 // Vue.use(VueRouter);
 Vue.use(VueAxios, axios)
 Vue.use(require('vue-moment'))
 Vue.use(VueHtml2pdf)
-// Vue.use(VueSweetalert2)
+Vue.use(VueSweetalert2)
 
 Vue.config.productionTip = false
 Vue.component('navbar-component', require('./components/Template/Navbar.vue').default);

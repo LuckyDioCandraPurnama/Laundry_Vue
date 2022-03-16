@@ -14,15 +14,20 @@
                 <div class="card-body">
                   <!-- Form -->
                   <div class="form-group">
-                    <label>Jenis</label>
-                    <select class="form-control" v-model="paket.jenis" disabled>
+                    <label>Jenis Paket</label>
+                    <!-- <select class="form-control" v-model="paket.jenis" disabled>
                       <option value="Cuci kering">Cuci kering</option>
                       <option value="Cuci setrika">Cuci setrika</option>
                       <option value="Sprei kecil">Sprei kecil</option>
                       <option value="Sprei besar">Sprei besar</option>
                       <option value="Bed cover">Bed Cover</option>
-                    </select>
-                  
+                    </select> -->
+                  <input
+                      type="text"
+                      name="paket"
+                      v-model="paket.jenis"
+                      class="form-control" disabled
+                    />
                   </div>
                   <div class="form-group">
                     <label>Harga</label>
@@ -59,6 +64,13 @@ export default {
     };
   },
   created() {
+        var data = JSON.parse(this.$store.state.datauser)
+        var role = data.role
+        if(role == 'owner' || role =='kasir')
+        {
+            this.$swal("Anda tidak dapat mengakses halaman ini")
+            this.$router.push('/') 
+        }
     this.axios
       .get(`http://localhost/api-laundry/public/api/paket/${this.$route.params.id}`, {
         headers: { 'Authorization' : `Bearer ` + this.$store.state.token },

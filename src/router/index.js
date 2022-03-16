@@ -13,6 +13,7 @@ import Edit_Paket from '../components/Paket/Edit_Paket.vue'
 //OUTLET
 import Outlet from '../components/Outlet/Outlet.vue'
 import Edit_Outlet from '../components/Outlet/Edit_Outlet.vue'
+import Tambah_Outlet from '../components/Outlet/Tambah_Outlet.vue'
 
 //TRANSAKSI
 import Transaksi from '../components/Transaksi/Transaksi.vue'
@@ -32,6 +33,7 @@ import Edit_User from '../components/User/Edit_User.vue'
 import Detail_User from '../components/User/Detail_User.vue'
 //REPORT
 import Report from '../components/Report/Report.vue'
+import Struk from '../components/Report/Struk.vue'
 
 Vue.use(VueRouter)
 
@@ -69,9 +71,11 @@ const routes = [
   //OUTLET
   { path: '/outlet', name: 'outlet', component: Outlet, meta: {requiresAuth: true} },
   { path: '/outlet/:id', name: 'edit_outlet', component: Edit_Outlet, meta: {requiresAuth: true} },
+  { path: '/outlet/tambah', name: 'tambah_outlet', component: Tambah_Outlet, meta: {requiresAuth: true} },
 
   //REPORT
   { path: '/report', name: 'report', component: Report, meta: {requiresAuth: true} },
+  { path: '/struk', name: 'struk', component: Struk, meta: {requiresAuth: true} },
 
 ]
 

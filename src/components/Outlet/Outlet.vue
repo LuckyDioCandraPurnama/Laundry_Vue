@@ -62,6 +62,18 @@
                   </tbody>
                 </table>
               </div>
+              <div>
+                <router-link
+                  to="/outlet/tambah"
+                  name= 'tambah_outlet'
+                  class="btn btn-info btn-icon-split"
+                >
+                  <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                  </span>
+                  <span class="text">Tambah</span>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -80,6 +92,13 @@ export default {
     };
   },
   created() {
+        var data = JSON.parse(this.$store.state.datauser)
+        var role = data.role
+        if(role == 'owner' || role =='kasir')
+        {
+            this.$swal("Anda tidak dapat mengakses halaman ini")
+            this.$router.push('/') 
+        }
     this.axios
       .get("http://localhost/api-laundry/public/api/outlet", {
         headers: { 'Authorization': "Bearer" + this.$store.state.token },

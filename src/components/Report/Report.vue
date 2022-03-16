@@ -36,7 +36,7 @@
                                 <div class="col-md-4 py-2">
                                 <button type="button" class="btn btn-sm btn-primary" @click="tampil">Tampilkan</button>
                                 </div>
-                            </div>  
+                            </div>
                             <div class="col-md-6 align-items-center">
                                 <VueHtml2pdf
                                     :show-layout="true"
@@ -55,6 +55,7 @@
                                 
                                     <section slot="pdf-content">
                                         <div class="text-center">
+                                            <hr>
                                         <h1 class="h1 font-weight-bold mb-0 text-gray-900">Report Transaksi</h1>
                                         <h3 class="h3 mb-0 text-gray-800">Laundry Online</h3>
                                         <h5 class="h5 mb-0 text-gray-800"> Jl. Dr. Wahidin No 86, Balung</h5>
@@ -155,7 +156,7 @@ export default {
         //     this.$swal("Anda tidak dapat mengakses halaman ini")
         //     this.$router.push('/') 
         // }
-        this.axios
+        //this.axios
     //   .get(
     //     `http://localhost/api-laundry/public/api/transaksi/${this.id_transaksi}`,
     //     { headers: { Authorization: `Bearer ` + this.$store.state.token } }

@@ -74,14 +74,15 @@ export default {
     login() {
       this.axios.post("http://localhost/api-laundry/public/api/login", this.account)
 
-        .then((res) => {  
-          if (res.data.success) {
+        .then(res => {  
+          if((res.data.success)) {
             this.$store.commit("setToken", res.data.token);
             this.$store.commit("setUser", JSON.stringify(res.data.user));
             this.$router.push("/");
+          }else{
+            this.$swal('Username atau Password salah')
           }
         })
-        .catch((err) => console.log(err));
     },
   },
 };

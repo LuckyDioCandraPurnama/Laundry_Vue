@@ -84,7 +84,16 @@
           </form>
         </div>
       </li>
-
+          <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link">
+          <span v-if="role =='admin'" class="mr-2 d-none d-lg-inline text-gray-600 small "
+            >Admin</span>
+          <span v-if="role =='kasir'" class="mr-2 d-none d-lg-inline text-gray-600 small "
+            >Kasir</span>
+          <span v-if="role =='owner'" class="mr-2 d-none d-lg-inline text-gray-600 small "
+            >Owner</span>
+        </a>
+      </li>
       <div class="topbar-divider d-none d-sm-block"></div>
 
       <!-- Nav Item - User Information -->
@@ -143,11 +152,27 @@ export default {
    data() {
     return {
       akun: "",
+      role: "",
     };
   },
   created() {
     var user = JSON.parse(this.$store.state.datauser);
     this.akun = user.name;
+
+    var data = JSON.parse(this.$store.state.datauser);
+    this.role = data.role;
+
+    this.axios.get('http://localhost/api-laundry/public/api/login/check',{
+       headers: { Authorization: "Bearer " + this.$store.state.token },
+      })
+      .then((res) => {
+        if(!(res.data.success)){
+          this.$store.commit("clearToken");
+          this.$store.commit("clearUser");
+          this.$swal("Token Invalid","Sesi anda sudah berakhir <br> Silahkan login kembali", "error")
+          this.$router.push("/login");
+        }
+        })  
   },
   methods: {
     logout() {

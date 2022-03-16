@@ -97,6 +97,15 @@ export default {
       member: {},
     };
   },
+  created() {
+        var data = JSON.parse(this.$store.state.datauser)
+        var role = data.role
+        if(role == 'owner' || role =='kasir')
+        {
+            this.$swal("Anda tidak dapat mengakses halaman ini")
+            this.$router.push('/') 
+        }
+  },
   methods: {
     tambah() {
       this.axios
@@ -107,13 +116,11 @@ export default {
             headers: { Authorization: `Bearer` + this.$store.state.token },
           }
         )
-        .then(() => {
-          // if(res.data.success){
-          //   this.$swal("Sukses", res.data.message, "success")
-          //   this.$router.push("/member");
-          // }
+        .then((res) => {
+          if(res.data.success){
+            this.$swal("Sukses", res.data.message, "success")
             this.$router.push("/member");
-
+          }
         })
         .catch((err) => console.log(err));
     },
