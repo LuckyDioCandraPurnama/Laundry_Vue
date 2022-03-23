@@ -41,7 +41,7 @@
                         >
                           <label
                             v-if="ubah.jk == 'Laki-laki'"
-                            class="btn btn-secondary active"
+                            class="btn btn-info active"
                             checked
                           >
                             <input
@@ -50,7 +50,7 @@
                               v-model="ubah.jk"
                             />Laki-laki
                           </label>
-                          <label v-else class="btn btn-secondary">
+                          <label v-else class="btn btn-info">
                             <input
                               type="radio"
                               value="Laki-laki"
@@ -60,7 +60,7 @@
                           &nbsp;
                           <label
                             v-if="ubah.jk == 'Perempuan'"
-                            class="btn btn-secondary active"
+                            class="btn btn-info active"
                             checked
                           >
                             <input
@@ -69,7 +69,7 @@
                               v-model="ubah.jk"
                             />Perempuan
                           </label>
-                          <label v-else class="btn btn-secondary">
+                          <label v-else class="btn btn-info">
                             <input
                               type="radio"
                               value="Perempuan"
@@ -96,6 +96,15 @@
                         <button class="btn btn-primary" type="submit">
                           Simpan
                         </button>
+                        &nbsp;
+                        <router-link
+                          :to="{
+                            name: 'member',
+                          }"
+                          class="btn btn-secondary"
+                        >Cancel
+                          <!-- <span class="text">Cancel</span> -->
+                        </router-link>
                       </div>
                     </form>
                   </div>

@@ -8,13 +8,13 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Cetak Report Transaksi</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Cetak Report Outlet</h6>
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="form-group col-md-2">
-                                    <label>Bulan</label>
-                                    <select class="form-control" v-model="report.bulan">
+                            <div class="form-group col-md-2">
+                                <label>Bulan</label>
+                                <select class="form-control" v-model="report.bulan">
                                     <option value="01">Januari</option>
                                     <option value="02">Februari</option>
                                     <option value="03">Maret</option>
@@ -27,19 +27,25 @@
                                     <option value="10">Oktober</option>
                                     <option value="11">November</option>
                                     <option value="12">Desember</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label>Tahun</label>
-                                    <select class="form-control" v-model="report.tahun">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>Tahun</label>
+                                <select class="form-control" v-model="report.tahun">
                                     <option value="2020">2020</option>
                                     <option value="2021">2021</option>
                                     <option value="2022">2022</option>
-                                    </select>
-                                </div>
-                                </div>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>Outlet</label>
+                                <select class="form-control" v-model="report.id_outlet">
+                                    <option v-for="(m,index) in outlet" :key="index" :value="m.id">{{m.nama_outlet}}</option>
+                                </select>
+                            </div>
+                            </div>
                                 <div class="col-md-4 py-2">
-                                    <button type="button" class="btn btn-sm btn-primary" @click="tampil">Tampilkan</button>
+                                <button type="button" class="btn btn-sm btn-primary" @click="tampil">Tampilkan</button>
                                 </div>
                             <div class="col-md-6 align-items-center">
                                 <VueHtml2pdf
@@ -60,9 +66,13 @@
                                     <section slot="pdf-content">
                                         <div class="text-center">
                                             <hr>
-                                        <h1 class="h1 font-weight-bold mb-0 text-gray-900">Report Transaksi</h1>
+                                        <h1 class="h1 font-weight-bold mb-0 text-gray-900">Report Outlet</h1>
                                         <h3 class="h3 mb-0 text-gray-800">Laundry Online</h3>
                                         <h5 class="h5 mb-0 text-gray-800"> Jl. Dr. Wahidin No 86, Balung</h5>
+                                        
+                                        <!-- <div v-for="(t, id_outlet) in transaksi" :key="id_outlet">
+                                        <h5 class="h5 mb-0 text-gray-800"> {{t.nama_outlet}}</h5>
+                                        </div> -->
                                         </div>
                                         <table class="table"
                                                 cellspacing="0">
@@ -149,14 +159,24 @@ export default {
     data() {
         return {
             report : {},
-            transaksi : {},
             outlet : {},
+            transaksi : {}
         }
     },
-    created() {
-        var data = JSON.parse(this.$store.state.dataoutlet)
-        this.outlet = data
-
+created(){
+        // var data = JSON.parse(this.$store.state.datauser)
+        // var role = data.role
+        // if(role == 'owner')
+        // {
+        //     this.$swal("Anda tidak dapat mengakses halaman ini")
+        //     this.$router.push('/') 
+        // }
+  this.axios
+     .get("http://localhost/api-laundry/public/api/outlet", {
+       headers: { 'Authorization' : "Bearer " + this.$store.state.token },})
+     .then(res => {
+       this.outlet = res.data;
+     })
         var date = new Date()
         this.report.tahun = date.getFullYear()
         this.report.bulan = ("0" + (date.getMonth() + 1)).slice(-2)
@@ -164,13 +184,22 @@ export default {
     methods : {
         tampil() {
             this.axios
-            .post('http://localhost/api-laundry/public/api/report/outlet', 
+            .post('http://localhost/api-laundry/public/api/report/outlet2', 
             this.report,
              {headers : {'Authorization' : 'Bearer ' + this.$store.state.token} })
-                      .then(res => {
-                          this.transaksi = res.data
-                      })
-                      .catch(err => console.log(err))
+             .then((res) => {
+          if(res.data.success){
+            this.transaksi = res.data.data
+            // this.$swal("Sukses", res.data.message, "success")
+            // this.$swal(res.data.message)
+          }else{
+            this.$swal('Silahkan isi kolom OUTLET')
+          }
+        }).catch()
+                    //   .then(res => {
+                    //       this.transaksi = res.data
+                    //   })
+                    //   .catch(err => console.log(err))
         },
         generateReport() {
             this.$refs.html2Pdf.generatePdf()

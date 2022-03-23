@@ -38,30 +38,51 @@
                   </div>
 
                   <div class="form-group">
-                    <label>Jenis Kelamin</label>
-                    <br />
-                    <div
-                      class="btn-group btn-group-toggle"
-                      data-toggle="buttons"
-                    >
-                      <label class="btn btn-secondary active">
-                        <input
-                          type="radio"
-                          value="Laki-laki"
-                          v-model="member.jk"
-                        />Laki-laki
-                      </label>
-
-                      &nbsp;
-                      <label class="btn btn-secondary active">
-                        <input
-                          type="radio"
-                          value="Perempuan"
-                          v-model="member.jk"
-                        />Perempuan
-                      </label>
-                    </div>
-                  </div>
+                        <label>Jenis Kelamin</label>
+                        <br />
+                        <div
+                          class="btn-group btn-group-toggle"
+                          data-toggle="buttons"
+                        >
+                          <label
+                            v-if="member.jk == 'Laki-laki'"
+                            class="btn btn-info active"
+                            checked
+                          >
+                            <input
+                              type="radio"
+                              value="Laki-laki"
+                              v-model="member.jk"
+                            />Laki-laki
+                          </label>
+                          <label v-else class="btn btn-info">
+                            <input
+                              type="radio"
+                              value="Laki-laki"
+                              v-model="member.jk"
+                            />Laki-laki
+                          </label>
+                          &nbsp;
+                          <label
+                            v-if="member.jk == 'Perempuan'"
+                            class="btn btn-info active"
+                            checked
+                          >
+                            <input
+                              type="radio"
+                              value="Perempuan"
+                              v-model="member.jk"
+                            />Perempuan
+                          </label>
+                          <label v-else class="btn btn-info">
+                            <input
+                              type="radio"
+                              value="Perempuan"
+                              v-model="member.jk"
+                            />Perempuan
+                          </label>
+                        </div>
+                      </div>
 
                   <div class="form-group">
                     <label>No Telp</label>
@@ -78,6 +99,14 @@
                     <button class="btn btn-primary" type="submit">
                       Simpan
                     </button>
+                    &nbsp;
+                        <router-link
+                          :to="{
+                            name: 'member',
+                          }"
+                          class="btn btn-secondary"
+                        >Cancel
+                        </router-link>
                   </div>
                 </div>
               </form>
@@ -100,7 +129,7 @@ export default {
   created() {
         var data = JSON.parse(this.$store.state.datauser)
         var role = data.role
-        if(role == 'owner' || role =='kasir')
+        if(role == 'owner')
         {
             this.$swal("Anda tidak dapat mengakses halaman ini")
             this.$router.push('/') 

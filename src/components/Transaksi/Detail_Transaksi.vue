@@ -50,6 +50,8 @@
                   <div class="h6 mb-0 font-weight-bold text-gray-800 mb-2">
                     {{ transaksi.batas_waktu | moment("DD/MM/YYYY") }}
                   </div>
+                </div>
+                  <div class="col">
                   <div
                     class="text-xs font-weight-bold text-primary text-uppercase"
                   >
@@ -67,6 +69,8 @@
                   >
                     {{ transaksi.tgl_bayar | moment("DD/MM/YYYY") }}
                   </div>
+
+                  <!-- </div> -->
                   <div
                     class="text-xs font-weight-bold text-primary text-uppercase"
                   >
@@ -118,6 +122,7 @@
               </div>
               <div class="row align-items-center">
                 <div class="col-md-4 text-center">
+                  <br>
                   <button
                     :disabled="disableStatus"
                     type="button"
@@ -133,8 +138,8 @@
               </div>
               <br />
               <br />
-              <div class="">
-              <button
+              <div class="col">
+              <button :disabled="disableStruk"
                 type="button"
                 class="btn btn-sm btn-info btn-icon-split mb-3"
                 @click="generateReport"
@@ -230,8 +235,7 @@
                 v-if="
                   transaksi.status != 'diambil' &&
                   transaksi.status != 'selesai' &&
-                  transaksi.dibayar != 'dibayar'
-                "
+                  transaksi.dibayar != 'dibayar'"
                 :to="{
                   name: 'tambah_detail',
                   params: { id: this.id_transaksi },
@@ -335,6 +339,18 @@ export default {
         this.transaksi.status == "baru" ||
         this.transaksi.status == "proses" ||
         this.transaksi.status == "diambil"
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    disableStruk() {
+      if (
+        this.transaksi.status == "baru" ||
+        this.transaksi.status == "proses" ||
+        this.transaksi.status == "selesai"
+
       ) {
         return true;
       } else {

@@ -12,6 +12,7 @@
       class="sidebar-brand d-flex align-items-center justify-content-center"
     >
         <i class="fas fa-home"></i>
+        <!-- <font-awesome-icon icon="far fa-dryer-alt" /> -->
       <div class="sidebar-brand-text mx-3">APP LAUNDRY</div>
     </a>
 
@@ -71,9 +72,9 @@
     <hr class="sidebar-divider d-none d-md-block" />
 
     <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
+    <!-- <div class="text-center d-none d-md-inline">
       <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+    </div> -->
 
   </ul>
 </template>

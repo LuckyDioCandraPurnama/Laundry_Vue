@@ -26,7 +26,7 @@
                       <th>NAMA</th>
                       <th>USERNAME</th>
                       <th>ROLE</th>
-                      <th>ID OUTLET</th>
+                      <th>NAMA OUTLET</th>
                       <th>AKSI</th>
                     </tr>
                   </thead>
@@ -36,7 +36,7 @@
                       <td>{{ b.name }}</td>
                       <td>{{ b.username }}</td>
                       <td>{{ b.role }}</td>
-                      <td>{{ b.id_outlet }}</td>
+                      <td>{{ b.nama_outlet }}</td>
                       <td>
                         <!-- <router-link
                           :to="{

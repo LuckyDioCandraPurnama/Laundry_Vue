@@ -28,7 +28,7 @@
                       <!-- <th>BATAS WAKTU</th> -->
                       <!-- <th>TANGGAL BAYAR</th> -->
                       <th>STATUS</th>
-                      <!-- <th>DIBAYAR</th> -->
+                      <th>PETUGAS</th>
                       <th>AKSI</th>
                     </tr>
                   </thead>
@@ -61,7 +61,7 @@
                           >Diambil</span
                         >
                       </td>
-                      <!-- <td>{{ m.dibayar }}</td> -->
+                      <td>{{ m.name }}</td>
                       <td>
                         <router-link
                           :to="{

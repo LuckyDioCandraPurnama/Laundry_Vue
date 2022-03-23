@@ -5,8 +5,24 @@
       <div id="content">
         <navbar-component></navbar-component>
         <div class="container-fluid">
+          <div
+            class="d-sm-flex align-items-center justify-content-between mb-4"
+          >
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">OUTLET</h1>
+          <h1 class="h3 mb-0 text-gray-800">OUTLET</h1>
+              <router-link :to="{name: 'report_outlet',}"
+              class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+              <i class="fas fa-download fa-sm text-white-50"></i>&nbsp;
+              <span>Generate Report</span>
+            </router-link>
+              <!-- <router-link
+              to="/outlet/report"
+              class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+            >
+              <i class="fas fa-download fa-sm text-white-50"></i>&nbsp;
+              <span>Generate Report</span>
+            </router-link> -->
+          </div>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -31,7 +47,7 @@
                   <tbody>
                     <tr v-for="(m, index) in outlet" :key="index">
                       <td>{{ index + 1 }}</td>
-                      <td>{{ m.nama }}</td>
+                      <td>{{ m.nama_outlet }}</td>
                       <td>{{ m.alamat }}</td>
                       <td>
                         <router-link
@@ -64,8 +80,10 @@
               </div>
               <div>
                 <router-link
-                  to="/outlet/tambah"
-                  name= 'tambah_outlet'
+                  :to="{
+
+                  name: 'tambah_outlet'
+                  }"
                   class="btn btn-info btn-icon-split"
                 >
                   <span class="icon text-white-50">

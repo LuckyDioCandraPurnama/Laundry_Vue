@@ -84,7 +84,12 @@
           </form>
         </div>
       </li>
-          <li class="nav-item dropdown no-arrow mx-1">
+      <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link">
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ nama_outlet }}</span></a>
+      </li>
+      <div class="topbar-divider d-none d-sm-block"></div>
+      <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link">
           <span v-if="role =='admin'" class="mr-2 d-none d-lg-inline text-gray-600 small "
             >Admin</span>
@@ -153,6 +158,7 @@ export default {
     return {
       akun: "",
       role: "",
+      nama_outlet : ''
     };
   },
   created() {
@@ -161,6 +167,11 @@ export default {
 
     var data = JSON.parse(this.$store.state.datauser);
     this.role = data.role;
+
+    var outlet = JSON.parse(this.$store.state.dataoutlet)
+    var namaoutlet = outlet.nama_outlet
+
+    this.nama_outlet = namaoutlet
 
     this.axios.get('http://localhost/api-laundry/public/api/login/check',{
        headers: { Authorization: "Bearer " + this.$store.state.token },

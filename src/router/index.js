@@ -14,6 +14,7 @@ import Edit_Paket from '../components/Paket/Edit_Paket.vue'
 import Outlet from '../components/Outlet/Outlet.vue'
 import Edit_Outlet from '../components/Outlet/Edit_Outlet.vue'
 import Tambah_Outlet from '../components/Outlet/Tambah_Outlet.vue'
+import Report_Outlet from '../components/Outlet/Report_Outlet.vue'
 
 //TRANSAKSI
 import Transaksi from '../components/Transaksi/Transaksi.vue'
@@ -70,8 +71,9 @@ const routes = [
   
   //OUTLET
   { path: '/outlet', name: 'outlet', component: Outlet, meta: {requiresAuth: true} },
-  { path: '/outlet/:id', name: 'edit_outlet', component: Edit_Outlet, meta: {requiresAuth: true} },
+  { path: '/outlet/edit/:id', name: 'edit_outlet', component: Edit_Outlet, meta: {requiresAuth: true} },
   { path: '/outlet/tambah', name: 'tambah_outlet', component: Tambah_Outlet, meta: {requiresAuth: true} },
+  { path: '/outlet/report', name: 'report_outlet', component: Report_Outlet, meta: {requiresAuth: true} },
 
   //REPORT
   { path: '/report', name: 'report', component: Report, meta: {requiresAuth: true} },

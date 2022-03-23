@@ -66,7 +66,7 @@
                         &nbsp;
                         <button
                           type="submit"
-                          @click="hapus(m.id)"
+                          @click="alertDisplay(m.id)"
                           class="btn btn-danger btn-icon-split"
                         >
                           <span class="icon text-white-50">
@@ -140,6 +140,44 @@ export default {
             this.$swal('Data member gagal dihapus')
           }
         }).catch()
+    },
+    alertDisplay(id) {
+      this.$swal({
+        title: "Apa sudah yakin?",
+        text: "Data tidak bisa kembali jika terhapus",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yakin",
+        cancelButtonText: "Tidak, tunggu",
+        showCloseButton: true,
+        showLoaderOnConfirm: true,
+      }).then((result) => {
+        if (result.value) {
+          this.$swal(
+            "Sukses",
+            "Data Member Berhasil Dihapus",
+            "success",
+            
+            this.axios
+              .delete(
+                `http://localhost/api-laundry/public/api/member/${id}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ` + this.$store.state.token,
+                  },
+                }
+              )
+              .then(() => {
+                let i = this.member
+                  .map((item) => item.id)
+                  .indexOf(id);
+                this.member.splice(i, 1);
+              })
+          );
+        //}else {
+        //   this.$swal("Cancelled", "Your Data Is Still Intact", "info");
+        }
+      });
     },
   },
 };

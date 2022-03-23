@@ -47,7 +47,7 @@
                           <span class="text">Edit</span>
                         </router-link>
                         &nbsp;
-                        <button
+                        <!-- <button
                           type="submit"
                           @click="hapus(m.id)"
                           class="btn btn-danger btn-icon-split"
@@ -56,7 +56,7 @@
                             <i class="fas fa-trash"></i>
                           </span>
                           <span class="text">Delete</span>
-                        </button>
+                        </button> -->
                       </td>
                     </tr>
                   </tbody>

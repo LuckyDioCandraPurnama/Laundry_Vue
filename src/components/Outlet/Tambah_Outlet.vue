@@ -38,6 +38,14 @@
                     <button class="btn btn-primary" type="submit">
                       Simpan
                     </button>
+                    &nbsp;
+                        <router-link
+                          :to="{
+                            name: 'outlet',
+                          }"
+                          class="btn btn-secondary"
+                        >Cancel
+                        </router-link>
                   </div>
                 </div>
               </form>

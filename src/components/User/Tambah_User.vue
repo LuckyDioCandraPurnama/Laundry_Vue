@@ -44,42 +44,75 @@
                     />
                   </div>
                   <div class="form-group">
-                    <label>Role</label>
-                    <br>
-                    <div
-                      class="btn-group btn-group-toggle"
-                      data-toggle="buttons"
-                    >
-                      <label class="btn btn-secondary active">
-                        <input
-                          type="radio"
-                          value="admin"
-                          v-model="user.role"
-                        />Admin
-                      </label>
-                      &nbsp;
-                      <label class="btn btn-secondary active">
-                        <input
-                          type="radio"
-                          value="kasir"
-                          v-model="user.role"
-                        />Kasir
-                      </label>
-                      &nbsp;
-                      <label class="btn btn-secondary active">
-                        <input
-                          type="radio"
-                          value="owner"
-                          v-model="user.role"
-                        />Owner
-                      </label>
-                    </div>
-                  </div>
+                        <label>Role</label>
+                        <br />
+                        <div
+                          class="btn-group btn-group-toggle"
+                          data-toggle="buttons">
+                          <label
+                            v-if="user.role == 'admin'"
+                            class="btn btn-info active"
+                            checked>
+                            <input
+                              type="radio"
+                              value="admin"
+                              v-model="user.role"
+                            />Admin
+                          </label>
+                          <label v-else class="btn btn-info">
+                            <input
+                              type="radio"
+                              value="admin"
+                              v-model="user.role"
+                            />Admin
+                          </label>
+
+                          &nbsp;
+
+                          <label
+                            v-if="user.role == 'kasir'"
+                            class="btn btn-info active"
+                            checked>
+                            <input
+                              type="radio"
+                              value="kasir"
+                              v-model="user.role"
+                            />Kasir
+                          </label>
+                          <label v-else class="btn btn-info">
+                            <input
+                              type="radio"
+                              value="kasir"
+                              v-model="user.role"
+                            />Kasir
+                          </label>
+
+                          &nbsp;
+
+                          <label
+                            v-if="user.role == 'owner'"
+                            class="btn btn-info active"
+                            checked>
+                            <input
+                              type="radio"
+                              value="owner"
+                              v-model="user.role"
+                            />Owner
+                          </label>
+                          <label v-else class="btn btn-info">
+                            <input
+                              type="radio"
+                              value="owner"
+                              v-model="user.role"
+                            />Owner
+                          </label>
+                        </div>
+                      </div>
                   <div class="form-group">
                     <label>Outlet</label>
                     <select class="form-control" v-model="user.id_outlet" >
                         <!-- <option value="" selected hidden disabled>Pilih kelas</option> -->
-                        <option v-for="(m,index) in outlet" :key="index" :value="m.id">{{m.nama}}</option>
+                        <option v-for="(m,index) in outlet" :key="index" :value="m.id">{{m.nama_outlet}}</option>
                         <!-- <option value="member.id" >{{member.nama}}</option> -->
                     </select>
                     <br />
@@ -88,6 +121,15 @@
                     <button class="btn btn-primary" type="submit">
                       Simpan
                     </button>
+                    &nbsp;
+                        <router-link
+                          :to="{
+                            name: 'user',
+                          }"
+                          class="btn btn-secondary"
+                        >Cancel
+                          <!-- <span class="text">Cancel</span> -->
+                        </router-link>
                   </div>
                 </div>
               </form>

@@ -48,7 +48,7 @@
                           data-toggle="buttons">
                           <label
                             v-if="ubah.role == 'admin'"
-                            class="btn btn-secondary active"
+                            class="btn btn-info active"
                             checked>
                             <input
                               type="radio"
@@ -56,7 +56,7 @@
                               v-model="ubah.role"
                             />Admin
                           </label>
-                          <label v-else class="btn btn-secondary">
+                          <label v-else class="btn btn-info">
                             <input
                               type="radio"
                               value="admin"
@@ -68,7 +68,7 @@
 
                           <label
                             v-if="ubah.role == 'kasir'"
-                            class="btn btn-secondary active"
+                            class="btn btn-info active"
                             checked>
                             <input
                               type="radio"
@@ -76,7 +76,7 @@
                               v-model="ubah.role"
                             />Kasir
                           </label>
-                          <label v-else class="btn btn-secondary">
+                          <label v-else class="btn btn-info">
                             <input
                               type="radio"
                               value="kasir"
@@ -88,7 +88,7 @@
 
                           <label
                             v-if="ubah.role == 'owner'"
-                            class="btn btn-secondary active"
+                            class="btn btn-info active"
                             checked>
                             <input
                               type="radio"
@@ -96,7 +96,7 @@
                               v-model="ubah.role"
                             />Owner
                           </label>
-                          <label v-else class="btn btn-secondary">
+                          <label v-else class="btn btn-info">
                             <input
                               type="radio"
                               value="owner"
@@ -116,6 +116,15 @@
                         <button class="btn btn-primary" type="submit">
                           Simpan
                         </button>
+                        &nbsp;
+                        <router-link
+                          :to="{
+                            name: 'user',
+                          }"
+                          class="btn btn-secondary"
+                        >Cancel
+                          <!-- <span class="text">Cancel</span> -->
+                        </router-link>
                       </div>
                     </form>
                   </div>
